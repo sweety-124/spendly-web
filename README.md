@@ -29,34 +29,4 @@ Run the TypeScript checks and production build with:
 
 ```sh
 npm run build
-```
 
-## Deploy to Vercel
-
-1. Push this project to a GitHub repository.
-2. In Vercel, choose **Add New Project** and import that repository.
-3. Keep the framework preset as **Vite**. The build command is `npm run build`, and the output directory is `dist`.
-4. No environment variables are required for the local-only phase.
-5. Deploy. Vercel's Vite preset serves the SPA entry point for app routes; configure a rewrite to `/index.html` if you later add a client-side router.
-
-Preview deployments can be enabled from the Vercel project's Git settings. Deploy over HTTPS so mobile browser camera features can be used.
-
-## iOS / Capacitor path
-
-Capacitor packaging is a follow-on phase and has not been configured or verified in this initial implementation. Once native camera handling and the PWA assets are finalized, the standard Capacitor workflow is:
-
-```sh
-npm install @capacitor/core @capacitor/cli
-npx cap init Spendly com.example.spendly
-npm install @capacitor/ios
-npx cap add ios
-npm run build
-npx cap sync ios
-npx cap open ios
-```
-
-Set Capacitor's `webDir` to `dist`, replace the example bundle ID with an owned reverse-DNS identifier, and use Xcode on macOS to configure signing, app icons, launch screens, privacy usage descriptions, and App Store distribution. Verify camera permissions and IndexedDB persistence on physical devices before submission. A PWA manifest, service worker, cloud sync, report/PDF exports, and production iOS validation are not part of this phase yet.
-
-## Current scope
-
-This is the local-storage foundation. Cloud accounts/synchronization, restore-from-backup, advanced analytics and report generation, installable PWA/offline asset caching, and automated test coverage are planned for later phases.
